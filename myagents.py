@@ -37,16 +37,17 @@ def TableDrivenAgentProgram(table):
     To customize it, provide as table a dictionary of all
     {percept_sequence:action} pairs.
     """
-    percepts = []
+     percepts = []
 
     def program(percept):
         action =None
-        """
-        Write your code here
-        """
+        percepts.append(percept)
+        action = table.get(tuple(percepts))
         return action
 
     return program
+
+   
 
 loc_A, loc_B = (0, 0), (1, 0)  # The two locations for the Vacuum world
 
@@ -171,9 +172,17 @@ class TrivialVacuumEnvironment(Environment):
         """Change agent's location and/or location's status; track performance.
         Score 10 for each dirt cleaned; -1 for each move."""
 
-        """
-        Write your code here
-        """
+        if action == 'Right':
+            agent.location = loc_B
+            agent.performance -= 1
+        elif action == 'Left':
+            agent.location = loc_A
+            agent.performance -= 1
+        elif action == 'Suck':
+            if self.status[agent.location] == 'Dirty':
+                agent.performance += 10
+            self.status[agent.location] = 'Clean'
+
 
     def default_location(self, thing):
         """Agents start in either location at random."""
