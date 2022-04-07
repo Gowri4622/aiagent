@@ -5,9 +5,14 @@
 To find the PEAS description for the given AI problem and develop an AI agent.
 
 ## THEORY
-Explain the problem statement
+A vacuum-cleaner world with 6 locations.
+Each location can be clean or dirty.
+The agent can move left, right, up, down,and can clean the square that it occupies.
 
 ## PEAS DESCRIPTION
+| Agent type    | performance  measurement      |environment  |   Actuators         |  sensors                       | 
+|-------------  | ---------------------------   | ----------- |-------------------- | ------------------------------ | 
+| vaccum cleaner| cleanliness ,number of moments| Rooms       |  wheels,suction tool|  location, cleanliness         |
 
 
 ## DESIGN STEPS
