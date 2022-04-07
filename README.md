@@ -26,6 +26,7 @@ Implementing the AI agent
 Measure the performance parameters
 
 ## PROGRAM
+```python
 import random
 import time
 
@@ -261,7 +262,7 @@ if __name__ == "__main__":
         print("Clean rooms : ",environment.clean_check())
         time.sleep(3)
 
-
+```
 
 
 ## OUTPUT
