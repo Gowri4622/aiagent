@@ -186,4 +186,4 @@ if __name__ == "__main__":
     environment.add_thing(agent)
     print(environment.status)
     environment.run()
-    print(agent.performance)
+    print(agent.performance) 
