@@ -17,23 +17,35 @@ The agent can move left, right, up, down,and can clean the square that it occupi
 
 ## DESIGN STEPS
 ### STEP 1:
-Identifying the input:
+The inputs are location of the agent and the status of the location
 
 ### STEP 2:
-Identifying the output:
+The output of the system is Right Left and Suck.
 
 ### STEP 3:
-Developing the PEAS description:
+Agent Type:Vaccum Cleaner
+Performance Measure: Cleanliness , Number of Movements
+Environment: Rooms
+Actuators: Wheels and Suction tool
+Sensor: Location Sensor and Cleanliness sensor
+
 ### STEP 4:
-Implementing the AI agent
+The agent should detect the location and suck if the location it is dirty,else it should move to the next location.
 
 ### STEP 5:
-Measure the performance parameters
+The performance is measured with the number of movements and the cleaning action of the agent.
 
 ## PROGRAM
 ```python
 import random
 import time
+
+class Thing:
+    """
+        This represents any physical object that can appear in an Environment.
+    """
+
+    import random
 
 class Thing:
     """
@@ -245,7 +257,7 @@ class TrivialVacuumEnvironment(Environment):
 
     def default_location(self, thing):
         """Agents start in either location at random."""
-        return random.choice([loc_A, loc_B, loc_C, loc_D, loc_E, loc_F, loc_G])
+        return random.choice([loc_A, loc_B, loc_C, loc_D, loc_E, loc_F])
 
 
 if __name__ == "__main__":
@@ -256,22 +268,21 @@ if __name__ == "__main__":
     print('\nAgent Location : ',agent.location)
     print('\nAgent Performance : ',agent.performance)
     print("\nClean rooms : ",environment.clean_check())
-    time.sleep(3)
-    
-    
-    for i in range(3):
-        print(environment.run(steps=1))
-        print('\nAgent after Action\n\n',environment.status)
-        print('Agent Location : ',agent.location)
-        print('Agent Performance : ',agent.performance)
-        print("Clean rooms : ",environment.clean_check())
-        time.sleep(3)
+
+    environment.run(steps=6)
+    print('\n\nAgent after Action\n\n',environment.status)
+    print('\nAgent Location : ',agent.location)
+    print('\nAgent Performance : ',agent.performance)
+    print("\nClean rooms : ",environment.clean_check())
+        
+
 
 ```
 
 
 ## OUTPUT
-
+![output](./static/img/aiot.png)
+</br>
 
 ## RESULT
 
