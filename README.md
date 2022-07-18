@@ -48,25 +48,7 @@ import random
 import time
 
 
-class Thing:
-    
 
-    def is_alive(self):
-        return hasattr(self, 'alive') and self.alive
-
-    def show_state(self):
-        print("I don't know how to show_state.")
-
-
-class Agent(Thing):
-
-    def __init__(self, program=None):
-        self.alive = True
-        self.performance = 0
-        self.program = program
-
-    def can_grab(self, thing):
-        return False
 
 def TableDrivenAgentProgram(table):
     percepts = []
@@ -99,63 +81,7 @@ def TableDrivenVacuumAgent():
     return Agent(TableDrivenAgentProgram(table))
 #right1,2,3,4 start left1,2 up1,2
 
-class Environment:
 
-    def __init__(self):
-        self.things = []
-        self.agents = []
-
-    def percept(self, agent):
-        raise NotImplementedError
-
-    def execute_action(self, agent, action):
-        raise NotImplementedError
-
-    def default_location(self, thing):
-        return None
-
-    def is_done(self):
-        return not any(agent.is_alive() for agent in self.agents)
-
-    def step(self):
-        if not self.is_done():
-            actions = []
-            for agent in self.agents:
-                if agent.alive:
-                    actions.append(agent.program(self.percept(agent)))
-                else:
-                    actions.append("")
-            for (agent, action) in zip(self.agents, actions):
-                self.execute_action(agent, action)
-
-    def run(self, steps=1000):
-        for step in range(steps):
-            if self.is_done():
-                return
-            self.step()
-
-    def add_thing(self, thing, location=None):
-        if not isinstance(thing, Thing):
-            thing = Agent(thing)
-        if thing in self.things:
-            print("Can't add the same thing twice")
-        else:
-            thing.location = location if location is not None else self.default_location(thing)
-            self.things.append(thing)
-            if isinstance(thing, Agent):
-                thing.performance = 0
-                self.agents.append(thing)
-
-    def delete_thing(self, thing):
-        try:
-            self.things.remove(thing)
-        except ValueError as e:
-            print(e)
-            print("  in Environment delete_thing")
-            print("  Thing to be removed: {} at {}".format(thing, thing.location))
-            print("  from list: {}".format([(thing, thing.location) for thing in self.things]))
-        if thing in self.agents:
-            self.agents.remove(thing)
 
 
 class TrivialVacuumEnvironment(Environment):
